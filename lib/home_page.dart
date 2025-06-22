@@ -24,10 +24,40 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white, 
+        elevation: 0, 
+        automaticallyImplyLeading: false, 
         title: _currentIndex == 0
-            ? Image.asset('assets/kig.png', height: 40)
-            : Text(['Shop', 'Bag', 'My Profile'][_currentIndex - 1]),
-        centerTitle: true,
+            ? Image.asset('assets/kig.png', height: 100)
+            : Text(['Shop', 'Bag', 'My Profile'][_currentIndex - 1],
+                style: const TextStyle(color: Colors.black)),
+        centerTitle: false, 
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.camera_alt, color: Colors.black),
+            onPressed: () {
+              
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.message, color: Colors.black),
+            onPressed: () {
+              // TODO: message action
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.favorite_border, color: Colors.black),
+            onPressed: () {
+              // TODO: wishlist action
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.menu, color: Colors.black),
+            onPressed: () {
+              // TODO: menu action (drawer or popup)
+            },
+          ),
+        ],
       ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
