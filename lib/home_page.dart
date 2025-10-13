@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'screens/profile_page.dart';
-import 'screens/shop_page.dart';
-import 'screens/bag_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,51 +12,76 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _pages = [
     const HomeContent(),
-    const ShopPage(),
-    const BagPage(),
-    const ProfilePage(),
+    const Center(child: Text("Shop Page")),
+    const Center(child: Text("Bag Page")),
+    const Center(child: Text("Profile Page")),
+  ];
+
+  final List<Widget> _titles = [
+    Image.asset('assets/kig.png',height: 100, fit: BoxFit.contain,),
+    const Text('Shop', style: TextStyle(color: Colors.black)),
+    const Text('Bag', style: TextStyle(color: Colors.black)),
+    const Text('My Profile', style: TextStyle(color: Colors.black)),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white, 
-        elevation: 0, 
-        automaticallyImplyLeading: false, 
-        title: _currentIndex == 0
-            ? Image.asset('assets/kig.png', height: 100)
-            : Text(['Shop', 'Bag', 'My Profile'][_currentIndex - 1],
-                style: const TextStyle(color: Colors.black)),
-        centerTitle: false, 
+        backgroundColor: Colors.white,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        title: _titles[_currentIndex],
+        centerTitle: false,
         actions: [
           IconButton(
             icon: const Icon(Icons.camera_alt, color: Colors.black),
-            onPressed: () {
-              
-            },
+            onPressed: () {},
           ),
           IconButton(
             icon: const Icon(Icons.message, color: Colors.black),
-            onPressed: () {
-              // TODO: message action
-            },
+            onPressed: () {},
           ),
           IconButton(
             icon: const Icon(Icons.favorite_border, color: Colors.black),
-            onPressed: () {
-              // TODO: wishlist action
-            },
+            onPressed: () {},
           ),
-          IconButton(
-            icon: const Icon(Icons.menu, color: Colors.black),
-            onPressed: () {
-              // TODO: menu action (drawer or popup)
-            },
+          Builder(
+            builder: (context) => IconButton(
+              icon: const Icon(Icons.menu, color: Colors.black),
+              onPressed: () => Scaffold.of(context).openDrawer(),
+            ),
           ),
         ],
       ),
+
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Text('Menu',
+                  style: TextStyle(color: Colors.white, fontSize: 20)),
+            ),
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text('About Us'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text('Logout'),
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/');
+              },
+            ),
+          ],
+        ),
+      ),
+
       body: _pages[_currentIndex],
+
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         selectedItemColor: Colors.black,
@@ -81,10 +103,12 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // 🔍 Search Bar
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             decoration: BoxDecoration(
@@ -98,6 +122,90 @@ class HomeContent extends StatelessWidget {
                 border: InputBorder.none,
               ),
             ),
+          ),
+          const SizedBox(height: 20),
+
+          // 📂 Categories
+          const Text("Categories",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 10),
+          SizedBox(
+            height: 100,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                _buildCategoryCard(Icons.shopping_bag, "Flame Jeans"),
+                _buildCategoryCard(Icons.shopping_bag, "Skull Shirts"),
+                _buildCategoryCard(Icons.sports_soccer, "Sports caps"),
+                _buildCategoryCard(Icons.chair, "kig Home steeze"),
+              ],
+            ),
+          ),
+          const SizedBox(height: 20),
+
+          // ⭐ Featured Products
+          const Text("Featured Products",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 10),
+          GridView.count(
+            crossAxisCount: 2,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            childAspectRatio: 0.8,
+            children: [
+              _buildProductCard("Sneakers", "₦20,000", Icons.shopping_basket),
+              _buildProductCard("Smart Watch", "₦35,000", Icons.watch),
+              _buildProductCard("Shirts", "₦15,000", Icons.shopping_cart_sharp),
+              _buildProductCard("jeans", "₦100,000", Icons.backpack),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  static Widget _buildCategoryCard(IconData icon, String title) {
+    return Container(
+      width: 80,
+      margin: const EdgeInsets.only(right: 12),
+      decoration: BoxDecoration(
+        color: Colors.grey[100],
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, size: 32, color: Colors.blue),
+          const SizedBox(height: 8),
+          Text(title, style: const TextStyle(fontSize: 12)),
+        ],
+      ),
+    );
+  }
+
+  static Widget _buildProductCard(String name, String price, IconData icon) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.grey[100],
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+              child: Icon(icon, size: 80, color: Colors.grey[600])),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(name,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: Text(price,
+                style: const TextStyle(color: Colors.blue, fontSize: 12)),
           ),
         ],
       ),
