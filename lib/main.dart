@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'splash_screen.dart';
 import 'login_page.dart';
 import 'signup_page.dart';
 import 'home_page.dart';
-  
+
 void main() {
   runApp(const KiGApp());
 }
@@ -17,7 +18,7 @@ class KiGApp extends StatelessWidget {
       title: 'KiG',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.transparent,
@@ -25,9 +26,10 @@ class KiGApp extends StatelessWidget {
           foregroundColor: Colors.black,
         ),
       ),
-      initialRoute: '/',
+      initialRoute: '/', // start with SplashScreen
       routes: {
-        '/': (context) => const LoginPage(),
+        '/': (context) => const SplashScreen(),
+        '/login': (context) => const LoginPage(),
         '/signup': (context) => const SignupPage(),
         '/home': (context) => const HomePage(),
       },

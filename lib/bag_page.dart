@@ -29,7 +29,7 @@ class BagPage extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             ElevatedButton(
-              onPressed: onStartShopping, // ✅ call parent callback
+              onPressed: onStartShopping, // ✅ switch to Shop tab
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.black,
                 padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),

@@ -10,15 +10,26 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
-  final List<Widget> _pages = [
-    const HomeContent(),
-    const Center(child: Text("Shop Page")),
-    const Center(child: Text("Bag Page")),
-    const Center(child: Text("Profile Page")),
-  ];
+  late final List<Widget> _pages;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _pages = [
+      const HomeContent(),
+      const Center(child: Text("Shop Page")), // You can replace with real shop page later
+      BagPage(
+        onStartShopping: () {
+          setState(() => _currentIndex = 1); // switch to Shop tab
+        },
+      ),
+      const Center(child: Text("Profile Page")), // Replace with real profile page if needed
+    ];
+  }
 
   final List<Widget> _titles = [
-    Image.asset('assets/kig.png',height: 100, fit: BoxFit.contain,),
+    Image.asset('assets/kig.png', height: 100, fit: BoxFit.contain),
     const Text('Shop', style: TextStyle(color: Colors.black)),
     const Text('Bag', style: TextStyle(color: Colors.black)),
     const Text('My Profile', style: TextStyle(color: Colors.black)),
@@ -60,7 +71,7 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.zero,
           children: [
             const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
+              decoration: BoxDecoration(color: Colors.green),
               child: Text('Menu',
                   style: TextStyle(color: Colors.white, fontSize: 20)),
             ),
@@ -194,20 +205,62 @@ class HomeContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Expanded(
-              child: Icon(icon, size: 80, color: Colors.grey[600])),
+          Expanded(child: Icon(icon, size: 80, color: Colors.grey[600])),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(name,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: Text(price,
-                style: const TextStyle(color: Colors.blue, fontSize: 12)),
+                style: const TextStyle(color: Colors.green, fontSize: 12)),
           ),
         ],
+      ),
+    );
+  }
+}
+
+// Bag Page
+class BagPage extends StatelessWidget {
+  final VoidCallback onStartShopping;
+
+  const BagPage({super.key, required this.onStartShopping});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.shopping_bag_outlined, size: 60, color: Colors.grey),
+            const SizedBox(height: 10),
+            const Icon(Icons.add_circle, size: 24, color: Colors.black),
+            const SizedBox(height: 30),
+            const Text(
+              'Bag is empty',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'Add items to bag and they will appear here!',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.grey),
+            ),
+            const SizedBox(height: 30),
+            ElevatedButton(
+              onPressed: onStartShopping,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+              ),
+              child: const Text('Start Shopping'),
+            ),
+          ],
+        ),
       ),
     );
   }
