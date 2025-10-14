@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kig/screens/bag_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -148,7 +149,7 @@ class HomeContent extends StatelessWidget {
                 _buildCategoryCard(Icons.shopping_bag, "Flame Jeans"),
                 _buildCategoryCard(Icons.shopping_bag, "Skull Shirts"),
                 _buildCategoryCard(Icons.sports_soccer, "Sports caps"),
-                _buildCategoryCard(Icons.chair, "kig Home steeze"),
+                _buildCategoryCard(Icons.chair, "kig steeze"),
               ],
             ),
           ),
@@ -188,7 +189,7 @@ class HomeContent extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 32, color: Colors.blue),
+          Icon(icon, size: 32, color: Colors.green),
           const SizedBox(height: 8),
           Text(title, style: const TextStyle(fontSize: 12)),
         ],
@@ -205,7 +206,7 @@ class HomeContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Expanded(child: Icon(icon, size: 80, color: Colors.grey[600])),
+          Expanded(child: Icon(icon, size: 80, color: Colors.green[600])),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(name,
@@ -222,46 +223,46 @@ class HomeContent extends StatelessWidget {
   }
 }
 
-// Bag Page
-class BagPage extends StatelessWidget {
-  final VoidCallback onStartShopping;
+// // Bag Page
+// class BagPage extends StatelessWidget {
+//   final VoidCallback onStartShopping;
 
-  const BagPage({super.key, required this.onStartShopping});
+//   const BagPage({super.key, required this.onStartShopping});
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.shopping_bag_outlined, size: 60, color: Colors.grey),
-            const SizedBox(height: 10),
-            const Icon(Icons.add_circle, size: 24, color: Colors.black),
-            const SizedBox(height: 30),
-            const Text(
-              'Bag is empty',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              'Add items to bag and they will appear here!',
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey),
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: onStartShopping,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-              ),
-              child: const Text('Start Shopping'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//       child: Padding(
+//         padding: const EdgeInsets.all(32),
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             const Icon(Icons.shopping_bag_outlined, size: 60, color: Colors.grey),
+//             const SizedBox(height: 10),
+//             const Icon(Icons.add_circle, size: 24, color: Colors.black),
+//             const SizedBox(height: 30),
+//             const Text(
+//               'Bag is empty',
+//               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+//             ),
+//             const SizedBox(height: 10),
+//             const Text(
+//               'Add items to bag and they will appear here!',
+//               textAlign: TextAlign.center,
+//               style: TextStyle(color: Colors.grey),
+//             ),
+//             const SizedBox(height: 30),
+//             ElevatedButton(
+//               onPressed: onStartShopping,
+//               style: ElevatedButton.styleFrom(
+//                 backgroundColor: Colors.green,
+//                 padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+//               ),
+//               child: const Text('Start Shopping'),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

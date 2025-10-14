@@ -13,9 +13,9 @@ class BagPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.shopping_bag_outlined, size: 60, color: Colors.grey),
+            const Icon(Icons.shopping_bag_outlined, size: 60, color: Colors.green),
             const SizedBox(height: 10),
-            const Icon(Icons.add_circle, size: 24, color: Colors.black),
+            const Icon(Icons.add_circle, size: 24, color: Colors.green),
             const SizedBox(height: 30),
             const Text(
               'Bag is empty',
@@ -25,13 +25,13 @@ class BagPage extends StatelessWidget {
             const Text(
               'Add items to bag and they will appear here!',
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(color: Colors.green),
             ),
             const SizedBox(height: 30),
             ElevatedButton(
-              onPressed: onStartShopping, // ✅ call parent callback
+              onPressed: onStartShopping,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
+                backgroundColor: Colors.green,
                 padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
               ),
               child: const Text('Start Shopping'),

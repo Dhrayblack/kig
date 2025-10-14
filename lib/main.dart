@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'splash_screen.dart';
-import 'login_page.dart';
-import 'signup_page.dart';
-import 'home_page.dart';
+import 'screens/splash_screen.dart';
+import 'screens/login_page.dart';
+import 'screens/signup_page.dart';
+import 'screens/home_page.dart';
 
 void main() {
   runApp(const KiGApp());
