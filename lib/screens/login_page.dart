@@ -21,7 +21,7 @@ class LoginPage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 160, 208, 162),
+                  color: Colors.green,
                 ),
               ),
 
