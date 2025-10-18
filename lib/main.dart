@@ -4,6 +4,7 @@ import 'screens/splash_screen.dart';
 import 'screens/login_page.dart';
 import 'screens/signup_page.dart';
 import 'screens/home_page.dart';
+// Ensure that the HomePage class exists in home_page.dart and is exported.
 
 void main() {
   runApp(const KiGApp());

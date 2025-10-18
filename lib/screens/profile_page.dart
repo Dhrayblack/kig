@@ -6,83 +6,73 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // title: const Text('My Profile'),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        foregroundColor: Colors.black,
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ListTile(
-                leading: const Icon(Icons.person),
-                title: const Text('Profile Details'),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () {
-                  // TODO: Navigate to Profile Details
-                },
-              ),
-              const Divider(),
-
-              ListTile(
-                leading: const Icon(Icons.payment),
-                title: const Text('Payment Methods'),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () {
-                  // TODO: Navigate to Payment Methods
-                },
-              ),
-              const Divider(),
-
-              ListTile(
-                leading: const Icon(Icons.help_outline),
-                title: const Text('Help and Support'),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () {
-                  // TODO: Navigate to Help & Support
-                },
-              ),
-              const Divider(),
-
-              ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text('App Settings'),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () {
-                  // TODO: Navigate to App Settings
-                },
-              ),
-              const Divider(),
-
-              const Spacer(),
-
-              // Logout button
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(color: Colors.red),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
-                  },
-                  child: const Text(
-                    'Logout',
-                    style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-            ],
+      backgroundColor: Colors.white,
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          const SizedBox(height: 40),
+          // 👤 Avatar
+          Center(
+            child: CircleAvatar(
+              radius: 50,
+              backgroundColor: Colors.green[100],
+              child: const Icon(Icons.person, size: 60, color: Colors.green),
+            ),
           ),
-        ),
+          const SizedBox(height: 10),
+          const Center(
+            child: Text("Keep It Green",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          ),
+          const Center(
+            child: Text("Keepitgreen@gmail.com",
+                style: TextStyle(color: Colors.grey)),
+          ),
+          const SizedBox(height: 30),
+
+          // 📋 Options
+          _buildTile(Icons.person, "Profile Details"),
+          _buildTile(Icons.payment, "Payment Methods"),
+          _buildTile(Icons.history, "Order History"),
+          _buildTile(Icons.help_outline, "Help & Support"),
+          _buildTile(Icons.settings, "Settings"),
+
+          const SizedBox(height: 30),
+
+          // 🚪 Logout
+          OutlinedButton(
+            style: OutlinedButton.styleFrom(
+              side: const BorderSide(color: Colors.red),
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            onPressed: () {
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil('/', (route) => false);
+            },
+            child: const Text(
+              "Logout",
+              style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
       ),
+    );
+  }
+
+  Widget _buildTile(IconData icon, String title) {
+    return Column(
+      children: [
+        ListTile(
+          leading: Icon(icon, color: Colors.green),
+          title: Text(title),
+          trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+          onTap: () {},
+        ),
+        const Divider(height: 1),
+      ],
     );
   }
 }
