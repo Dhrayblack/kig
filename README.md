@@ -26,7 +26,6 @@
 
 - **Flutter** for cross-platform mobile development
 - **Dart** as the programming language
-- **Font Awesome Flutter** for icons
 - **Firebase** (optional) for backend services like auth & database (if implemented)
 - **GitHub** for version control
 
