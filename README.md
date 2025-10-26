@@ -19,7 +19,7 @@
 - 👤 User Profile Management
 - 🔍 Search functionality for products
 - 🏷️ Category and Featured Products Section
-  
+
 ---
 
 ## 🛠️ Tech Stack
