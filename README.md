@@ -3,7 +3,6 @@
 
 # KeepItGreen (KIG) 🧵
 
-
 **KeepItGreen (KIG)** is a mobile application built with **Flutter**, designed for a sustainable fashion brand. The app serves as a digital storefront and brand identity hub — offering a sleek, mobile-first experience for users to explore products, browse collections, and connect with the brand's ethos.
 
 ----
